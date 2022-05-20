@@ -18,7 +18,7 @@ const ProductDetails=()=>
     
     const fetchProductDetails = async ()=>
     {
-        const res= await axios.get(`http://localhost:5000/products/${id}`).catch((err)=>
+        const res= await axios.get(`https://ecommrcebackend.herokuapp.com/products${id}`).catch((err)=>
         {
             //console.log(err)
         })
