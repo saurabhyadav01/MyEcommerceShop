@@ -40,7 +40,7 @@ export default function SignUp() {
     {
        console.log(res.data);
        alert("Register Successfully");
-       navigate("Home/signIn")
+       navigate("/Home")
     }).catch((e)=>
     {
      alert("Registation Failed ")
