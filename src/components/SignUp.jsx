@@ -36,7 +36,7 @@ export default function SignUp() {
  
     const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post(`http://localhost:5000/register`,state).then((res)=>
+    axios.post(`https://ecommrcebackend.herokuapp.com/register`,state).then((res)=>
     {
        console.log(res.data);
        alert("Register Successfully");
