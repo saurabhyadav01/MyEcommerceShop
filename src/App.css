@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+.product_container
+{
+ display: grid;
+ grid-template-columns: repeat(4,1fr);
+ grid-template-rows: repeat(3,350px);
+ width: 90%;;
+ border-radius: 1px;
+ grid-gap: 20px;
+ line-height: 14px;
+margin: auto;
+}
+.items
+{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin: 10px;
+  width: 80%;
+  margin: auto;
+  margin-top: 100px;
+  height: 500px;
+  
+  line-height: 14px;
+}.items>img{
+  width: 60%;
+  height: 60%;
+
+}.items>p,h4
+{
+  margin-left: 30px;
+  
+}
+
+link{
+  text-decoration: none;
+}
+.flex
+{
+  display: flex;
+}
+.left
+{
+  width: 50%;
+  margin-left: auto;
+}
+.container
+{
+  
+  width: 100%;
+  border: 1px solid gray;
+  margin-top: 20px;
+ 
+  
+}.container>div{
+  border: 1px solid gray;
+  width: 100%;
+}
+.flex>div>h4{
+  margin: 20px;
+  margin-top: 40px;
+}
+.flex>div>button
+{
+  background-color: transparent;
+  color: black;
+  font-size: 20px;
+  padding: 5px;;
+  width: 100px;
+  border-radius: 20px;
+  margin-top: 35px;
+
+}
