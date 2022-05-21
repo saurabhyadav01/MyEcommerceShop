@@ -1,5 +1,5 @@
 # MyEcommerceShop
-# My shop https://my-ecommerce-shop.vercel.app/
+ https://my-ecommerce-shop.vercel.app/
 
 This is an online shopping website for men and women
 clothing, electronics and many more items. Masai School's Mentorship  was specifically to build up our skills and we also accordingly implemented all that teachings in our project to look it at its best.
