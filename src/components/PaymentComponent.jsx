@@ -34,7 +34,7 @@ export default function Payments() {
     setCard({ ...card, [id]: value });
   };
   const getData=()=>
-  { axios.get(`https://ecommrcebackend.herokuapp.com/payment`)
+  { axios.get(`https://ecommrcebackend.herokuapp.com/payment)
   .then((res) => {
     // console.log(res.data);
     setCarddata([...res.data]);
