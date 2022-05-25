@@ -32,7 +32,14 @@ switch(type)
         return{
            ...state , products:[...SortData4]
         }  
-       
+        case ActionTypes.SORT_NAME_ASS : let SortData5 = state.products.sort((a,b)=>{return b.price - a.price})
+        return{
+           ...state , products:[...SortData5]
+        }  
+        case ActionTypes.SORT_NAME_DISS : let SortData6 = state.products.sort((a,b)=>{return b.price - a.price})
+        return{
+           ...state , products:[...SortData6]
+        }  
 
     default:
         return state    

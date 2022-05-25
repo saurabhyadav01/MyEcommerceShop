@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { Button } from "@mui/material";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const CartList = () => {
   const [data, setData] = useState([]);
@@ -42,8 +42,7 @@ const CartList = () => {
 
   
   useEffect(() => {
-    // const cartData = JSON.parse(localStorage.getItem("cartItem"));
-    // setData([...data, ...cartData]);
+  
     getData()
   }, []);
 
@@ -55,27 +54,32 @@ const CartList = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      <div style={{display:"flex",width:"100%",height:"50px",margin:"auto",justifyContent:"space-between",backgroundColor:"#febd01"}}>
+      <Link to="/Home" style={{textDecoration:"none",margin:"10px 0px 0px 50px"}}>Home</Link>
 
+      <Link style={{textDecoration:"none",margin:"10px 50px 0px 0px"}} to="/Home">Sign as {}</Link>
+
+      </div>
+ 
       <div style={{ display: "flex" }}>
+      
         <div className="left">
+        <div style={{border:".5px solid black",backgroundColor:"#ffffe0",marginTop:"15px"}}><h4>My Bag items {1}</h4></div>
           <div className="container">
             {data.map((e, index) => (
               <div className="flex" key={index}>
                 <div>
                   <h4>{e.id}</h4>
                 </div>
-                <div>
-                  <img src={e.image} alt="" width="80%" height="80%" />
-                </div>
+                <img style={{width:"12%"}} src={e.image1} alt="" />
                 <div>
                   <h4>{e.title}</h4>
                 </div>
                 <div>
-                  <h4>{e.price+incProduct}</h4>
+                  <h4>{}</h4>
                 </div>
-                <div style={{}}>
-                  <button
+                <div style={{padding:"5px"}}>
+                  <button style={{width:"40px"}}
                     onClick={() => {
                       handleIncrease(1)
                     }}
@@ -83,11 +87,11 @@ const CartList = () => {
                     +
                   </button>
                 </div>
-                <div>
-                  <span>{incProduct}</span>
+                <div style={{padding:"5px"}}>
+                  <button style={{width:"40px", margin:""}}>{incProduct}</button>
                 </div>
-                <div style={{}}>
-                  <button
+                <div style={{padding:"5px"}}>
+                  <button style={{width:"40px"}}
                     onClick={() => {
                       handleIncrease(-1)
                      
@@ -96,7 +100,7 @@ const CartList = () => {
                     -
                   </button>
                 </div>
-                <div style={{}}>
+                <div style={{padding:"5px"}}>
                   <button
                     onClick={() => {
                       handleDelete(index);
@@ -111,22 +115,26 @@ const CartList = () => {
           </div>
         </div>
         <div
-          className="right"
+          className=""
           style={{
-            textAlign: "center",
-            position: "fixed",
+      
             margin: "80px",
-            border: "1px solid gray",
-            width: "30%",
+         border:".5px solid wheat",
+            width: "40%",
             margin: "auto",
-            height: "300px",
+         
+            height: "350px",
+            marginTop:"15px",
           }}
         >
-          <h2>Total Price: {totalPrice}</h2>
-          <h2> Discount: {Discount}</h2>
-          <h2>Payable Amount :{amountToPay}</h2>
+            <div style={{border:".5px solid white ",borderRadius:"5px 5px 1px 1px",backgroundColor:"#ffa500"}}><h4>Save Extra With Tribe</h4></div>
+            <div style={{border:".5px solid white",borderRadius:"1px 1px 1px 5px",backgroundColor:"#ffffe0"}}><h4>Price Summary</h4></div>
+          <h4>Total Price: {totalPrice}</h4>
+          <h4> Discount: {Discount}</h4>
+          <h4> Delivery Price: {Discount}</h4>
+          <h4>Payable Amount :{amountToPay}</h4>
 
-          <Button variant="contained">
+          <Button sx={{color:"black",backgroundColor:"#ffa500",width:"50%",marginLeft:"20px"}} >
             {" "}
             <a
               href="/home/products/cart/payment"
@@ -137,6 +145,7 @@ const CartList = () => {
           </Button>
         </div>
       </div>
+     
     </React.Fragment>
   );
 };

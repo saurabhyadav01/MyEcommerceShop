@@ -43,7 +43,7 @@ const  MenComponent=()=>
     arr.push(el);
     localStorage.setItem("cartItem", JSON.stringify(arr));
 
-    console.log(arr);
+   // console.log(arr);
   };
   
   const menProduct=()=>
@@ -92,17 +92,21 @@ return(
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
          <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px", marginLeft:"50px"}}>
-       <img src={el.image} alt="" height="40%" width="60%" style={{marginLeft:"50px"}}/>
+         <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
+       {
+
+       }
        <CardContent>
-         <Typography gutterBottom variant="h5" component="div">
+         <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}}>
           {el.title}
          </Typography>
          <Typography variant="body2" color="text.secondary">
-          price: ${el.price}
+          Price: ₹{el.price} 
          </Typography>
        </CardContent>
+     
        <CardActions>
-         <Button variant="contained" size="small" onClick={()=>{
+         <Button sx={{width:"100%",backgroundColor:"#ffd84d",height:"35px" ,fontSize:"20px",color:"black"}} variant="contained" size="small" onClick={()=>{
            addToCart()
          }}>BUY NOW</Button>
          

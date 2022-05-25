@@ -14,12 +14,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "./Header";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 
 export default function Payments() {
- 
+ const navigate=useNavigate()
   const [card, setCard] = React.useState({
     name: "",
     cardNo: "",
@@ -27,27 +28,58 @@ export default function Payments() {
     cvv: "",
   });
 
+  const [carddata,setCarddata]=React.useState([])
   const handlechange = (e) => {
     const { id, value } = e.target;
     setCard({ ...card, [id]: value });
   };
+  const getData=()=>
+  { axios.get(`http://localhost:5000/payment`)
+  .then((res) => {
+    // console.log(res.data);
+    setCarddata([...res.data]);
+    // if(res.data.name== "saurabh")
+    // {
+    //   alert(" Successfully");
+    // }
+  
+  })
+  .catch((e) => {
+    alert(" Failed ");
+    
+  });
 
+}
+
+React.useEffect(()=>{
+  getData()
+},[])
+//console.log(card)
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(card)
-    // axios.post(``,card)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     alert(" Successfully");
-    //   })
-    //   .catch((e) => {
-    //     alert(" Failed ");
-        
-    //   });
-  };
-  
+    //  console.log(card.name)
+    //  console.log(carddata[0]);
 
+    if(card.name=="saurabh" && card.cardNo=="14521456985214563" &&card.expiry=="12/23" &&card.cvv=="123")
+    {
+      let otp;
+     const x= prompt("Enter");
+     console.log( x)
+     if(x==1234)
+     {
+       navigate("/home/products/cart/payment/success")
+      
+     }  else{
+       alert("Invalid Card Details")
+     }
+     
+    }else{
+      alert("Please Enter Valid Card Details")
+    }
+   
+  };
+ 
   return (
     <ThemeProvider theme={theme}>
      
@@ -98,8 +130,7 @@ export default function Payments() {
                     fullWidth
                     id="cardNo"
                     label="Card Number"
-                    min="16"
-                    max="16"
+                   
                     name="carNo"
                     autoComplete=""
                     onChange={handlechange}
@@ -137,7 +168,8 @@ export default function Payments() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                <a href="/home/products/cart/payment/success"> Pay</a>
+                Pay
+                {/* <a href="/home/products/cart/payment/success"> Pay</a> */}
               </Button>
              
              

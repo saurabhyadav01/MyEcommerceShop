@@ -59,7 +59,7 @@ const  ElectronicsComponent=()=>
 //   }
 //      //console.log(products);
  const electicData=products.filter((e)=>{
-   return e.category=="electronics"
+   return e.category=="cosmetices"
  })
 return(
     <>
@@ -93,7 +93,7 @@ return(
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
          <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px", marginLeft:"50px"}}>
-       <img src={el.image} alt="" height="40%" width="60%" style={{marginLeft:"50px"}}/>
+         <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
        <CardContent>
          <Typography gutterBottom variant="h5" component="div">
           {el.title}

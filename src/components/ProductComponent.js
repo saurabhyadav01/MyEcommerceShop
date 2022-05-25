@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 
 import {  sort_price_h_to_l , sort_price_l_to_h ,SORT_BY_WOMEN ,SORT_BY_MEN} from "../redux/actions/productActions";
+import { lineHeight } from "@mui/system";
 
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
@@ -84,13 +85,13 @@ const ProductComponent = () => {
         </FormControl>
        
       </Box>
-       {/* <Box sx={{textAlign:"center", textDecoration:"none",color:"black"}}>
-        <Button sx={{color:"black",fontSize:"20px"}} onClick={ProductComponent} >All</Button>
-        <Button sx={{color:"black",fontSize:"20px"}} onClick={menProduct}>Men</Button>
-        <Button sx={{color:"black",fontSize:"20px"}} onClick={womenProduct}>Women</Button>
-       </Box> */}
+       <Box sx={{textAlign:"center", textDecoration:"none",color:"black" }}>
+        <h2 sx={{color:"black",fontSize:"20px"}} onClick={ProductComponent} >All Products</h2>
+        {/* <Button sx={{color:"black",fontSize:"20px"}} onClick={menProduct}>Men</Button>
+        <Button sx={{color:"black",fontSize:"20px"}} onClick={womenProduct}>Women</Button> */}
+       </Box>
        <hr></hr>
-      <Grid container sx={{marginLeft:"auto"}}>
+      <Grid container sx={{marginLeft:"auto" }}>
       
     
 
@@ -98,20 +99,20 @@ const ProductComponent = () => {
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
          <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px", marginLeft:"50px"}}>
-       <img src={el.image} alt="" height="40%" width="60%" style={{marginLeft:"50px"}}/>
+       <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
        <CardContent>
-         <Typography gutterBottom variant="h5" component="div">
+         <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}}>
           {el.title}
          </Typography>
          <Typography variant="body2" color="text.secondary">
-          price: ${el.price}
+          Price: ₹{el.price}
          </Typography>
-         <Typography variant="body2" color="text.secondary">
+         {/* <Typography variant="body2" color="text.secondary">
           Rating: {el.rating.rate}
-         </Typography>
+         </Typography> */}
        </CardContent>
        <CardActions>
-         <Button variant="contained" size="small" onClick={()=>{
+         <Button sx={{width:"100%",backgroundColor:"#ffd84d",height:"35px" ,fontSize:"20px",color:"black"}} variant="contained" size="small" onClick={()=>{
            addToCart()
          }}>BUY NOW</Button>
          

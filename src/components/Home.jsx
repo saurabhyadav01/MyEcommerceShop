@@ -8,8 +8,10 @@ import { Box } from "@mui/system";
 import Footer from "./Footer"
 const Home=()=>
 {
-const products =useSelector((state)=>state.allProducts.products);
- console.log(products);
+// const products =useSelector((state)=>state.allProducts.products);
+//  console.log(products);
+// const loginData=useSelector((store)=>store.loginData.data)
+// console.log(loginData.user.firstName)
 
 return(
     <>

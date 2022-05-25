@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { Register_Request } from '../redux/actions/ragisterAction';
+import { useDispatch } from 'react-redux';
 
 
 const theme = createTheme();
@@ -27,7 +29,8 @@ export default function SignUp() {
     password:""
  })
 
- const navigate=useNavigate()
+ const navigate=useNavigate();
+ const dispatch= useDispatch()
  const handlechange =(e)=>{
      const {id , value} = e.target
      setState({...state ,[id]:value})
@@ -36,15 +39,16 @@ export default function SignUp() {
  
     const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post(`https://ecommrcebackend.herokuapp.com/register`,state).then((res)=>
-    {
-       console.log(res.data);
-       alert("Register Successfully");
-       navigate("Home/signIn")
-    }).catch((e)=>
-    {
-     alert("Registation Failed ")
-    })
+    // axios.post(`http://localhost:5000/register`,state).then((res)=>
+    // {
+    //    console.log(res.data);
+    //    alert("Register Successfully");
+    //    navigate("Home/signIn")
+    // }).catch((e)=>
+    // {
+    //  alert("Registation Failed ")
+    // })
+    dispatch(Register_Request(state,navigate))
     
   };
 

@@ -16,6 +16,8 @@ import Header from './Header';
 import axios from 'axios';
 import Footer from "./Footer"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Login_Request } from '../redux/actions/loginActions';
 
 
 const theme = createTheme();
@@ -25,6 +27,7 @@ export default function SignIn() {
         email:"",
         password:""
      })
+     const dispatch= useDispatch()
      const navigate=useNavigate()
      const handlechange =(e)=>{
          const {id , value} = e.target
@@ -32,20 +35,13 @@ export default function SignIn() {
 
         
      }
+
+   
      console.log(state)
      
         const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(`https://ecommrcebackend.herokuapp.com/login`,state).then((res)=>
-         {
-            console.log(res.data);
-            alert("Login Successfully");
-            navigate("/Home")
-         }).catch((e)=>
-         {
-          alert("Invalid User")
-           console.log("err"+e)
-         })
+        dispatch(Login_Request(state,navigate))
          
       };
 
