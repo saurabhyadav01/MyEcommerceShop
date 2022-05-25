@@ -43,7 +43,7 @@ export  const SORT_NAME_DISS  = ()=>({type:SORT_NAME_DISS })
 // fetch product
 export  const fetchProduct = ()=>(dispatch)=>{
 
-    axios.get("http://localhost:5000/products").then((res)=>{
+    axios.get("https://ecommrcebackend.herokuapp.com/products").then((res)=>{
          console.log(res.data)
          dispatch(setProducts(res.data))
     }).catch((err)=>{

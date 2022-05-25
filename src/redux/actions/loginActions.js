@@ -13,7 +13,7 @@ export const login_succes=(payload)=>({type:ActionTypes.LOGIN_SUCCESS,payload});
 export const Login_Request=(data,navigate)=>(dispatch)=>{
      dispatch(login_loading())
 
-    axios.post(`http://localhost:5000/login`,data).then((res)=>
+    axios.post(`https://ecommrcebackend.herokuapp.com/login`,data).then((res)=>
          {
             console.log(res.data);
             alert("Login Successfully");

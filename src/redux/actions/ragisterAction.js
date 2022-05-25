@@ -11,7 +11,7 @@ export const register_succes=(payload)=>({type:ActionTypes.REGISTER_SUCCESS,payl
 export const Register_Request=(data,navigate)=>(dispatch)=>{
     dispatch(register_loading())
 
-   axios.post(`http://localhost:5000//register`,data).then((res)=>
+   axios.post(`https://ecommrcebackend.herokuapp.com/register`,data).then((res)=>
         {
            console.log(res.data);
            alert("Ragister Successfully");

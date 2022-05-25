@@ -39,15 +39,16 @@ export default function SignUp() {
  
     const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post(`https://ecommrcebackend.herokuapp.com/register`,state).then((res)=>
-    {
-       console.log(res.data);
-       alert("Register Successfully");
-       navigate("/Home")
-    }).catch((e)=>
-    {
-     alert("Registation Failed ")
-    })
+    // axios.post(`http://localhost:5000/register`,state).then((res)=>
+    // {
+    //    console.log(res.data);
+    //    alert("Register Successfully");
+    //    navigate("Home/signIn")
+    // }).catch((e)=>
+    // {
+    //  alert("Registation Failed ")
+    // })
+    dispatch(Register_Request(state,navigate))
     
   };
 
