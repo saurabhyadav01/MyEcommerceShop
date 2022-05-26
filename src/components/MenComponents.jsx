@@ -29,7 +29,7 @@ const  MenComponent=()=>
     
     const handleChange = (event) => {
   
-      value(event.target.value)
+      setValue(event.target.value)
   
 
     };
