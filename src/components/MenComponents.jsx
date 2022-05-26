@@ -17,25 +17,21 @@ import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Footer from "./Footer";
 import ProductListing from "./ProductListing";
-import {  sort_price_h_to_l , sort_price_l_to_h ,SORT_BY_WOMEN ,SORT_BY_MEN} from "../redux/actions/productActions";
 
+import {  sort_price_h_to_l , sort_price_l_to_h ,SORT_BY_WOMEN,SORT_NAME_ASS,SORT_NAME_DISS ,SORT_BY_MEN,SORT_RATING_L_TO_H,SORT_RATING_H_TO_L} from "../redux/actions/productActions";
 
 const  MenComponent=()=>
 {
     const products =useSelector((state)=>state.allProducts.products);
     const Dispatch = useDispatch()
-    const [price, setPrice] = React.useState("");
+    const [value, setValue] = React.useState("");
     const [categories, setCategories] = React.useState("");
     
     const handleChange = (event) => {
   
-      setPrice(event.target.value)
+      value(event.target.value)
   
-    if(price === "highToLow"){
-      Dispatch(sort_price_h_to_l())
-    }if(price === "LowToHigh"){
-      Dispatch(sort_price_l_to_h())
-    }
+
     };
     
   const addToCart = (el) => {
@@ -60,6 +56,22 @@ const  MenComponent=()=>
  const mensData=products.filter((e)=>{
    return e.category=="men's clothing"
  })
+ 
+ if(value === "highToLow"){
+  Dispatch(sort_price_h_to_l())
+}if(value === "LowToHigh"){
+  Dispatch(sort_price_l_to_h())
+}
+if(value === "RatingLowToHigh"){
+  Dispatch(SORT_RATING_L_TO_H())
+}if(value === "RatingHighLow"){
+  Dispatch(SORT_RATING_H_TO_L())
+}
+if(value === "AtoZ"){
+  Dispatch(SORT_NAME_ASS())
+}if(value === "ZtoA"){
+  Dispatch(SORT_NAME_DISS())
+}
 return(
     <>
 <Header />
@@ -72,12 +84,17 @@ return(
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={price}
+            value={value}
             label="SortByPrice"
             onChange={handleChange}
           >
-            <MenuItem value={"highToLow"}>Low To High </MenuItem>
+           <MenuItem value={"highToLow"}>Low To High </MenuItem>
             <MenuItem value={"LowToHigh"}>High To Low</MenuItem>
+            
+            <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
+            <MenuItem value={"RatingHighLow"}>High To Low rating</MenuItem>
+            <MenuItem value={"AtoZ"}>Ass Name</MenuItem>
+            <MenuItem value={"ZtoA"}>DIss Name</MenuItem>
           </Select>
         </FormControl>
        
@@ -91,7 +108,7 @@ return(
      {mensData.map((el)=>(
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
-         <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px", marginLeft:"50px"}}>
+         <Card sx={{ maxWidth: 280 ,minWidth: 280 ,minHeight:480,margin:"20px",height:"400px", marginLeft:"50px"}}>
          <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
        {
 

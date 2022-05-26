@@ -37,7 +37,7 @@ return (
          
          <Button sx={{marginLeft:"50%"}}><Link style={{textDecoration:"none",color:"black",float:"right"}} to="/Home/signUp" color="inherit">SignUP</Link></Button>
          <Button ><Link style={{textDecoration:"none",color:"black"}} to="/Home/signIn" color="inherit">Login</Link></Button>
-          <span><Link style={{textDecoration:"none",color:"black",float:"right"}} to="/home/products/cart" color="inherit"  sx={{textDecoration:"none"}}><AddShoppingCartIcon/>{numberOfItem}</Link></span> 
+          <span><Link style={{textDecoration:"none",color:"black",float:"right"}} to="/Home/signIn" color="inherit"  sx={{textDecoration:"none"}}><AddShoppingCartIcon/>{numberOfItem}</Link></span> 
         </Toolbar>
       </AppBar>
     </Box>

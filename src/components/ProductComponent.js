@@ -17,28 +17,41 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 
-import {  sort_price_h_to_l , sort_price_l_to_h ,SORT_BY_WOMEN ,SORT_BY_MEN} from "../redux/actions/productActions";
+import {  sort_price_h_to_l , sort_price_l_to_h ,SORT_BY_WOMEN,SORT_NAME_ASS,SORT_NAME_DISS ,SORT_BY_MEN,SORT_RATING_L_TO_H,SORT_RATING_H_TO_L} from "../redux/actions/productActions";
 import { lineHeight } from "@mui/system";
 
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
   //  console.log(products);
   const Dispatch = useDispatch()
-  const [price, setPrice] = React.useState("");
+  const [value, setValue] = React.useState("");
   const [categories, setCategories] = React.useState("");
   
   const handleChange = (event) => {
 
-    setPrice(event.target.value)
+    setValue(event.target.value)
 
-  if(price === "highToLow"){
+  if(value === "highToLow"){
     Dispatch(sort_price_h_to_l())
-  }if(price === "LowToHigh"){
+  }if(value === "LowToHigh"){
     Dispatch(sort_price_l_to_h())
+  }
+  if(value === "RatingLowToHigh"){
+    Dispatch(SORT_RATING_L_TO_H())
+  }if(value === "RatingHighLow"){
+    Dispatch(SORT_RATING_H_TO_L())
+  }
+  if(value === "AtoZ"){
+    Dispatch(SORT_NAME_ASS())
+  }if(value === "ZtoA"){
+    Dispatch(SORT_NAME_DISS())
   }
   };
   
-
+  // SORT_RATING_L_TO_H:"SORT_RATING_L_TO_H",
+  // SORT_RATING_H_TO_L:"SORT_RATING_H_TO_L",
+  // SORT_NAME_ASS:"SORT_NAME_ASS",
+  // SORT_NAME_ASS:"SORT_NAME_DISS",
   const addToCart = (el) => {
     const arr = JSON.parse(localStorage.getItem("cartItem")) || [];
     arr.push(el);
@@ -75,12 +88,17 @@ const ProductComponent = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={price}
+            value={value}
             label="SortByPrice"
             onChange={handleChange}
           >
             <MenuItem value={"highToLow"}>Low To High </MenuItem>
             <MenuItem value={"LowToHigh"}>High To Low</MenuItem>
+            
+            <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
+            <MenuItem value={"RatingHighLow"}>High To Low rating</MenuItem>
+            <MenuItem value={"AtoZ"}>Ass Name</MenuItem>
+            <MenuItem value={"ZtoA"}>DIss Name</MenuItem>
           </Select>
         </FormControl>
        
@@ -98,7 +116,7 @@ const ProductComponent = () => {
      {products.map((el)=>(
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
-         <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px", marginLeft:"50px"}}>
+         <Card sx={{ maxWidth: 300 ,minWidth: 300 ,minHeight:480,margin:"20px",height:"400px", marginLeft:"50px"}}>
        <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
        <CardContent>
          <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}}>
@@ -107,9 +125,9 @@ const ProductComponent = () => {
          <Typography variant="body2" color="text.secondary">
           Price: ₹{el.price}
          </Typography>
-         {/* <Typography variant="body2" color="text.secondary">
-          Rating: {el.rating.rate}
-         </Typography> */}
+         <Typography variant="body2" color="text.secondary">
+         Rating:{el.rating.rate}
+         </Typography>
        </CardContent>
        <CardActions>
          <Button sx={{width:"100%",backgroundColor:"#ffd84d",height:"35px" ,fontSize:"20px",color:"black"}} variant="contained" size="small" onClick={()=>{

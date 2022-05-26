@@ -16,7 +16,7 @@ export const Register_Request=(data,navigate)=>(dispatch)=>{
            console.log(res.data);
            alert("Ragister Successfully");
            dispatch(register_succes(res.data))
-           navigate("/Home")
+           navigate("/Home/signIn")
         }).catch((e)=>
         {
          alert("Invalid User")
