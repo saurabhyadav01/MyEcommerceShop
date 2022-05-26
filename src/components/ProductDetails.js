@@ -61,7 +61,7 @@ return (
           <div style={{width:"50%",margin:"20px"}}> <img style={{width:"100%",height:"100%" ,border:"1px solid gray"}} src={product.image1} alt="" /></div>
           <div style={{width:"50%",margin:"20px"}}><h4>{product.title}</h4>
           <h4>Price:{product.price}</h4>
-          <h4>Rating:{product.rating.rate}</h4>
+//           <h4>Rating:{product.rating.rate}</h4>
           <h4>Category:{product.category}</h4>
           <h4>description:{product.description}</h4>
           <h4>Tribe:{product.tribe}</h4>
