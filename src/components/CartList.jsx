@@ -28,7 +28,7 @@ const CartList = () => {
     totalPrice += e.price *e.quantity;
      tribePrice = +e.tribe
 
-     discount += +e.discount+e.quantity
+     discount += +e.discount * +e.quantity
   });
 console.log(totalPrice-discount)
   const handleinc = (id) => {
@@ -43,7 +43,7 @@ console.log(totalPrice-discount)
   };
   const handledec = (id) => {
     const filterData = data.filter((e) => {
-      if (e.id === id) {
+      if (e.id === id &&e.quantity>1) {
         
       e.quantity--
       }
@@ -80,7 +80,7 @@ console.log(data)
       <div style={{display:"flex",width:"100%",height:"50px",margin:"auto",justifyContent:"space-between",backgroundColor:"#febd01"}}>
       <Link to="/Home" style={{textDecoration:"none",margin:"10px 0px 0px 50px"}}>Home</Link>
 
-      <Link style={{textDecoration:"none",margin:"10px 50px 0px 0px"}} to="/Home">Hii {loginData.user.firstName}</Link>
+      <Link style={{textDecoration:"none",margin:"10px 50px 0px 0px"}} to="/Home">Hii</Link>
 
       </div>
  
@@ -89,7 +89,8 @@ console.log(data)
         <div className="left">
         <div style={{border:".5px solid black",backgroundColor:"#ffffe0",marginTop:"15px"}}><h4>My Bag items {numberOfItem}</h4></div>
           <div className="container">
-            {data.map((e, index) => (
+            {
+            data.map((e, index) => (
               <div className="flex" key={index}>
                 <div>
                   <h4>{e.id}</h4>

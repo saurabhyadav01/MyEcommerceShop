@@ -31,23 +31,27 @@ const ProductComponent = () => {
 
     setValue(event.target.value)
 
-  if(value === "highToLow"){
+  if(event.target.value === "highToLow"){
+    Dispatch(sort_price_l_to_h());
+  } else if(event.target.value === "LowToHigh"){
+ 
     Dispatch(sort_price_h_to_l())
-  }if(value === "LowToHigh"){
-    Dispatch(sort_price_l_to_h())
   }
-  if(value === "RatingLowToHigh"){
-    Dispatch(SORT_RATING_L_TO_H())
-  }if(value === "RatingHighLow"){
+  else if(event.target.value === "RatingLowToHigh"){
+   
     Dispatch(SORT_RATING_H_TO_L())
+  }else if(event.target.value === "RatingHighLow"){
+    Dispatch(SORT_RATING_L_TO_H())
   }
-  if(value === "AtoZ"){
-    Dispatch(SORT_NAME_ASS())
-  }if(value === "ZtoA"){
+  else if(event.target.value === "AtoZ"){
     Dispatch(SORT_NAME_DISS())
   }
+  else if(event.target.value === "ZtoA"){
+   
+    Dispatch(SORT_NAME_ASS())
+  }
   };
-  
+
   // SORT_RATING_L_TO_H:"SORT_RATING_L_TO_H",
   // SORT_RATING_H_TO_L:"SORT_RATING_H_TO_L",
   // SORT_NAME_ASS:"SORT_NAME_ASS",
@@ -59,6 +63,8 @@ const ProductComponent = () => {
 
     console.log(arr);
   };
+  
+  
   
   // const menProduct=()=>
   // {
@@ -92,13 +98,14 @@ const ProductComponent = () => {
             label="SortByPrice"
             onChange={handleChange}
           >
+            <MenuItem value={""}> </MenuItem>
             <MenuItem value={"highToLow"}>Low To High </MenuItem>
-            <MenuItem value={"LowToHigh"}>High To Low</MenuItem>
+            <MenuItem value={"LowToHigh"}>HighTo Low</MenuItem>
             
             <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
-            <MenuItem value={"RatingHighLow"}>High To Low rating</MenuItem>
-            <MenuItem value={"AtoZ"}>Ass Name</MenuItem>
-            <MenuItem value={"ZtoA"}>DIss Name</MenuItem>
+            <MenuItem value={"RatingHighLow"}>Low To High rating</MenuItem>
+            <MenuItem value={"AtoZ"}>Diss Name</MenuItem>
+            <MenuItem value={"ZtoA"}>Ass Name</MenuItem>
           </Select>
         </FormControl>
        

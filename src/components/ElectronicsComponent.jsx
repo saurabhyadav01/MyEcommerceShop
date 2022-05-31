@@ -33,6 +33,25 @@ const  ElectronicsComponent=()=>
       setValue(event.target.value)
   
    
+  if(event.target.value === "highToLow"){
+    Dispatch(sort_price_l_to_h());
+  } else if(event.target.value === "LowToHigh"){
+ 
+    Dispatch(sort_price_h_to_l())
+  }
+  else if(event.target.value === "RatingLowToHigh"){
+   
+    Dispatch(SORT_RATING_H_TO_L())
+  }else if(event.target.value === "RatingHighLow"){
+    Dispatch(SORT_RATING_L_TO_H())
+  }
+  else if(event.target.value === "AtoZ"){
+    Dispatch(SORT_NAME_DISS())
+  }
+  else if(event.target.value === "ZtoA"){
+   
+    Dispatch(SORT_NAME_ASS())
+  }
     };
     
   const addToCart = (el) => {
@@ -58,21 +77,26 @@ const  ElectronicsComponent=()=>
    return e.category=="cosmetices"
  })
  
- if(value === "highToLow"){
-  Dispatch(sort_price_h_to_l())
-}if(value === "LowToHigh"){
-  Dispatch(sort_price_l_to_h())
-}
-if(value === "RatingLowToHigh"){
-  Dispatch(SORT_RATING_L_TO_H())
-}if(value === "RatingHighLow"){
-  Dispatch(SORT_RATING_H_TO_L())
-}
-if(value === "AtoZ"){
-  Dispatch(SORT_NAME_ASS())
-}if(value === "ZtoA"){
-  Dispatch(SORT_NAME_DISS())
-}
+ 
+  // if(event.target.value === "highToLow"){
+  //   Dispatch(sort_price_l_to_h());
+  // } else if(event.target.value === "LowToHigh"){
+ 
+  //   Dispatch(sort_price_h_to_l())
+  // }
+  // else if(event.target.value === "RatingLowToHigh"){
+   
+  //   Dispatch(SORT_RATING_H_TO_L())
+  // }else if(event.target.value === "RatingHighLow"){
+  //   Dispatch(SORT_RATING_L_TO_H())
+  // }
+  // else if(event.target.value === "AtoZ"){
+  //   Dispatch(SORT_NAME_DISS())
+  // }
+  // else if(event.target.value === "ZtoA"){
+   
+  //   Dispatch(SORT_NAME_ASS())
+  // }
 return(
     <>
 <Header />
@@ -89,13 +113,14 @@ return(
             label="SortByPrice"
             onChange={handleChange}
           >
-          <MenuItem value={"highToLow"}>Low To High </MenuItem>
-            <MenuItem value={"LowToHigh"}>High To Low</MenuItem>
+          <MenuItem value={""}> </MenuItem>
+            <MenuItem value={"highToLow"}>Low To High </MenuItem>
+            <MenuItem value={"LowToHigh"}>HighTo Low</MenuItem>
             
             <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
-            <MenuItem value={"RatingHighLow"}>High To Low rating</MenuItem>
-            <MenuItem value={"AtoZ"}>Ass Name</MenuItem>
-            <MenuItem value={"ZtoA"}>DIss Name</MenuItem>
+            <MenuItem value={"RatingHighLow"}>Low To High rating</MenuItem>
+            <MenuItem value={"AtoZ"}>Diss Name</MenuItem>
+            <MenuItem value={"ZtoA"}>Ass Name</MenuItem>
           </Select>
         </FormControl>
        
@@ -117,6 +142,9 @@ return(
          </Typography>
          <Typography variant="body2" color="text.secondary">
           price: ${el.price}
+         </Typography>
+           <Typography variant="body2" color="text.secondary">
+         Rating:{el.rating.rate}
          </Typography>
        </CardContent>
        <CardActions>
