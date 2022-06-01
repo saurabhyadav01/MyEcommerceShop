@@ -44,7 +44,7 @@ export  const SORT_NAME_DISS = ()=>({type:ActionTypes.SORT_NAME_DISS })
 export  const fetchProduct = ()=>(dispatch)=>{
 
     axios.get("https://ecommrcebackend.herokuapp.com/products").then((res)=>{
-         console.log(res.data)
+        // console.log(res.data)
          dispatch(setProducts(res.data))
     }).catch((err)=>{
         console.log(err.message)

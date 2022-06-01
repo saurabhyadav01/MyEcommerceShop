@@ -57,7 +57,7 @@ const addToCart = (el) => {
   arr.push(el);
   localStorage.setItem("cartItem", JSON.stringify(arr));
 
-  console.log(arr);
+ // console.log(arr);
 };
 
 const menProduct=()=>
@@ -106,12 +106,43 @@ return(
             label="SortByPrice"
             onChange={handleChange}
           >
-          <MenuItem value={""}> </MenuItem>
+            <MenuItem value={""}> </MenuItem>
             <MenuItem value={"highToLow"}>Low To High </MenuItem>
             <MenuItem value={"LowToHigh"}>HighTo Low</MenuItem>
             
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Rating</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByRating"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+         
             <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
             <MenuItem value={"RatingHighLow"}>Low To High rating</MenuItem>
+          
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Name</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByName"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+       
             <MenuItem value={"AtoZ"}>Diss Name</MenuItem>
             <MenuItem value={"ZtoA"}>Ass Name</MenuItem>
           </Select>
@@ -127,7 +158,7 @@ return(
      {womensData.map((el)=>(
        
       <Link to={`products/${el._id}`} style={{textDecoration:"none"}}>
-         <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px",maxHeight:450, marginLeft:"50px"}}>
+         <Card sx={{ maxWidth: 280 ,minWidth: 280 ,margin:"20px",height:"400px",maxHeight:450, marginLeft:"50px"}} key={el.id}>
          <img src={el.image1} alt="" height="60%" width="95%" style={{marginLeft:"8px",marginTop:"5px"}}/>
        <CardContent>
          <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}}>

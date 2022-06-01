@@ -61,7 +61,7 @@ const ProductComponent = () => {
     arr.push(el);
     localStorage.setItem("cartItem", JSON.stringify(arr));
 
-    console.log(arr);
+ //   console.log(arr);
   };
   
   
@@ -102,8 +102,39 @@ const ProductComponent = () => {
             <MenuItem value={"highToLow"}>Low To High </MenuItem>
             <MenuItem value={"LowToHigh"}>HighTo Low</MenuItem>
             
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Rating</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByRating"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+         
             <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
             <MenuItem value={"RatingHighLow"}>Low To High rating</MenuItem>
+          
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Name</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByName"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+       
             <MenuItem value={"AtoZ"}>Diss Name</MenuItem>
             <MenuItem value={"ZtoA"}>Ass Name</MenuItem>
           </Select>

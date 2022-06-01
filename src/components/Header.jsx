@@ -10,13 +10,30 @@ import { Tab } from "@mui/material";
 import { Tabs } from "@mui/material";
 import {Outlet,Link} from "react-router-dom"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useSelector } from "react-redux";
+
 
  const Header=()=>
 {
-
+  const loginData = useSelector((store) => store.loginData);
   const [value,setValue]=useState();
-  const arr=JSON.parse(localStorage.getItem("cartItem")) ||[];
-  const  numberOfItem=arr.length
+  
+  const cartProducts =useSelector((state)=>state.cartProductData.cartProducts);
+  const  numberOfItem=cartProducts.length
+  console.log(numberOfItem)
+
+  const getUserData=()=>
+  {
+   
+   if(loginData.loading==true)
+   {
+     return( loginData.data.user.firstName)
+   }
+ else{
+   return("Login")
+ }
+  }
+  const u=getUserData() ;
 return (
         <React.Fragment>
       
@@ -36,7 +53,7 @@ return (
          </Tabs>
          
          <Button sx={{marginLeft:"50%"}}><Link style={{textDecoration:"none",color:"black",float:"right"}} to="/Home/signUp" color="inherit">SignUP</Link></Button>
-         <Button ><Link style={{textDecoration:"none",color:"black"}} to="/Home/signIn" color="inherit">Login</Link></Button>
+         <Button ><Link style={{textDecoration:"none",color:"black"}} to="/Home/signIn" color="inherit">{u}</Link></Button>
           <span><Link style={{textDecoration:"none",color:"black",float:"right"}} to="/home/products/cart" color="inherit"  sx={{textDecoration:"none"}}><AddShoppingCartIcon/>{numberOfItem}</Link></span> 
         </Toolbar>
       </AppBar>

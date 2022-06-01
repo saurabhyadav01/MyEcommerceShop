@@ -94,7 +94,6 @@ const  MenComponent=()=>
 return(
     <>
 <Header />
-   
 <Box sx={{ minWidth: 200,display:"flex "}}>
         <FormControl
           sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
@@ -107,12 +106,43 @@ return(
             label="SortByPrice"
             onChange={handleChange}
           >
-           <MenuItem value={""}> </MenuItem>
+            <MenuItem value={""}> </MenuItem>
             <MenuItem value={"highToLow"}>Low To High </MenuItem>
             <MenuItem value={"LowToHigh"}>HighTo Low</MenuItem>
             
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Rating</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByRating"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+         
             <MenuItem value={"RatingLowToHigh"}>High To Low Rating</MenuItem>
             <MenuItem value={"RatingHighLow"}>Low To High rating</MenuItem>
+          
+          </Select>
+        </FormControl>
+        <FormControl
+          sx={{ width: "200px", marginLeft: "50px", marginBottom: "1px",marginTop:"5px" }}
+        >
+          <InputLabel id="demo-simple-select-label">Sort By Name</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={value}
+            label="SortByName"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}> </MenuItem>
+       
             <MenuItem value={"AtoZ"}>Diss Name</MenuItem>
             <MenuItem value={"ZtoA"}>Ass Name</MenuItem>
           </Select>
@@ -134,7 +164,7 @@ return(
 
        }
        <CardContent>
-         <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}}>
+         <Typography gutterBottom variant="h6" component="div" sx={{lineHeight:"20px"}} >
           {el.title}
          </Typography>
          <Typography variant="body2" color="text.secondary">

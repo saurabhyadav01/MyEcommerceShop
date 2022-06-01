@@ -15,7 +15,7 @@ export const Login_Request=(data,navigate)=>(dispatch)=>{
 
     axios.post(`https://ecommrcebackend.herokuapp.com/login`,data).then((res)=>
          {
-            console.log(res.data);
+            //console.log(res.data);
             alert("Login Successfully");
             dispatch(login_succes(res.data))
             navigate("/home/products/cart")

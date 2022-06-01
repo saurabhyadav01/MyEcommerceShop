@@ -1,134 +1,186 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
+
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  fetchCartProduct,
+  setCartProduct,
+} from "../redux/actions/cartItemActions";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const CartList = () => {
-    const loginData=useSelector((store)=>store.loginData.data)
-
+  const loginData = useSelector((store) => store.loginData);
+  const cartProducts = useSelector(
+    (state) => state.cartProductData.cartProducts
+  );
+  const Dispatch = useDispatch();
+  const Navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [user, setUser] = useState({});
   const [incProduct, setIncProduct] = useState(1);
-  const handleDelete = (e) => {
-    // console.log();
-    data.splice(e, 1);
-    localStorage.setItem("cartItem", JSON.stringify(data));
-    getData()
-   
-  };
-  // const loginData=useSelector((store)=>store.loginData.data)
-// console.log(loginData.user.firstName)
-  const arr=JSON.parse(localStorage.getItem("cartItem")) ||[];
-  const  numberOfItem=arr.length
-  let totalPrice = 0;
-  let tribePrice=0;
-  let discount=0;
-  
-  const Total = data.map((e) => {
-    totalPrice += e.price *e.quantity;
-     tribePrice = +e.tribe
+  const handleDelete = (i) => {
+    console.log(i);
+    //data.splice(e, 1);
 
-     discount += +e.discount * +e.quantity
+    // localStorage.setItem("cartItem", JSON.stringify(data));
+    // getData()
+    axios.put(`https://ecommrcebackend.herokuapp.com/carts/${i}`)
+      .then((response) => {
+        console.log(response.status);
+        console.log(response.data);
+        Dispatch(fetchCartProduct());
+         setData([...cartProducts]);
+      })
+      .catch((e) => console.log("something went wrong :(", e));
+  };
+
+
+  useEffect(() => {
+    Dispatch(fetchCartProduct());
+  }, []);
+  data.map((e) => {});
+  const getUserData = () => {
+    if (loginData.loading == true) {
+      return loginData.data.user.firstName;
+    } else {
+      return (
+        <><h4>HI</h4></>
+      )
+    }
+  };
+  const u = getUserData();
+  console.log(u);
+  const numberOfItem = data.length;
+  let totalPrice = 0;
+  let tribePrice = 0;
+  let discount = 0;
+
+  const Total = data.map((e) => {
+    totalPrice += e.price * e.quantity;
+    tribePrice = +e.tribe;
+
+    discount += +e.discount * +e.quantity;
   });
-console.log(totalPrice-discount)
+  //console.log(totalPrice-discount)
   const handleinc = (id) => {
     const filterData = data.filter((e) => {
-      if (e.id === id) {
-        
-      e.quantity++
+      if (e.id === id ) {
+        e.quantity++;
       }
       return e;
     });
     setData([...filterData]);
   };
   const handledec = (id) => {
-    const filterData = data.filter((e) => {
+    const filterData = cartProducts.filter((e) => {
       if (e.id === id &&e.quantity>1) {
-        
-      e.quantity--
+        e.quantity--;
       }
       return e;
     });
-  
-   setData([...filterData]);
+    // Dispatch(fetchCartProduct())
+    setData([...filterData]);
   };
 
- const handleIncrease = (value)=>{
-   setIncProduct(incProduct)
-     console.log(incProduct)
-  
- }
+  //  const handleIncrease = (value)=>{
+  //    setIncProduct(incProduct)
+  //      console.log(incProduct)
 
+  //  }
 
-console.log(data)
-  const getData=()=>{
-    const cartData = JSON.parse(localStorage.getItem("cartItem"));
-    setData([...cartData]);
-  }
+  const getData = () => {
+    setData([...cartProducts]);
+  };
 
-  
   useEffect(() => {
-  
-    getData()
+    getData();
   }, []);
 
-
-  const amountToPay = totalPrice-discount ;
+  const amountToPay = totalPrice - discount;
 
   return (
     <React.Fragment>
-      <div style={{display:"flex",width:"100%",height:"50px",margin:"auto",justifyContent:"space-between",backgroundColor:"#febd01"}}>
-      <Link to="/Home" style={{textDecoration:"none",margin:"10px 0px 0px 50px"}}>Home</Link>
+      {/* <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "50px",
+          margin: "auto",
+          justifyContent: "space-between",
+          backgroundColor: "#febd01",
+        }}
+      >
+        <Link
+          to="/Home"
+          style={{ textDecoration: "none", margin: "10px 0px 0px 50px" }}
+        >
+          Home
+        </Link>
 
-      <Link style={{textDecoration:"none",margin:"10px 50px 0px 0px"}} to="/Home">Hii</Link>
+        <Link
+          style={{ textDecoration: "none", margin: "10px 50px 0px 0px" }}
+          to="/Home"
+        >
+          Hii{u}
+        </Link>
+      </div> */}
+      <Header />
 
-      </div>
- 
       <div style={{ display: "flex" }}>
-      
         <div className="left">
-        <div style={{border:".5px solid black",backgroundColor:"#ffffe0",marginTop:"15px"}}><h4>My Bag items {numberOfItem}</h4></div>
+          <div
+            style={{
+              border: ".5px solid black",
+              backgroundColor: "#ffffe0",
+              marginTop: "15px",
+            }}
+          >
+            <h4>My Bag items {numberOfItem}</h4>
+          </div>
           <div className="container">
-            {
-            data.map((e, index) => (
+            {data.map((e, index) => (
               <div className="flex" key={index}>
                 <div>
                   <h4>{e.id}</h4>
                 </div>
-                <img style={{width:"12%"}} src={e.image1} alt="" />
+                <img style={{ width: "12%" }} src={e.image1} alt="" />
                 <div>
                   <h4>{e.title}</h4>
                 </div>
                 <div>
-                  <h4> ₹{e.price *e.quantity}</h4>
+                  <h4> ₹{e.price * e.quantity}</h4>
                 </div>
-                <div style={{padding:"5px"}}>
-                  <button style={{width:"40px"}}
+                <div style={{ padding: "5px" }}>
+                  <button
+                    style={{ width: "40px" }}
                     onClick={() => {
-                      handleinc(e.id)
+                      handleinc(e.id);
                     }}
                   >
                     +
                   </button>
                 </div>
-                <div style={{padding:"5px"}}>
-                  <button style={{width:"40px", margin:""}}>{e.quantity}</button>
+                <div style={{ padding: "5px" }}>
+                  <button style={{ width: "40px", margin: "" }}>
+                    {e.quantity}
+                  </button>
                 </div>
-                <div style={{padding:"5px"}}>
-                  <button style={{width:"40px"}}
+                <div style={{ padding: "5px" }}>
+                  <button
+                    style={{ width: "40px" }}
                     onClick={() => {
-                      handledec(e.id)
-                     
+                      handledec(e.id);
                     }}
                   >
                     -
                   </button>
                 </div>
-                <div style={{padding:"5px"}}>
+                <div style={{ padding: "5px" }}>
                   <button
                     onClick={() => {
-                      handleDelete(index);
-                      
+                      handleDelete(e._id);
                     }}
                   >
                     Delete
@@ -141,26 +193,48 @@ console.log(data)
         <div
           className=""
           style={{
-      
             margin: "80px",
-         border:".5px solid wheat",
+            border: ".5px solid wheat",
             width: "40%",
             margin: "auto",
-         
+
             height: "350px",
-            marginTop:"15px",
+            marginTop: "15px",
           }}
         >
-            <div style={{border:".5px solid white ",borderRadius:"5px 5px 1px 1px",backgroundColor:"#ffa500"}}><h4>Save Extra With Tribe{tribePrice}</h4></div>
-            <div style={{border:".5px solid white",borderRadius:"1px 1px 1px 5px",backgroundColor:"#ffffe0"}}><h4>Price Summary</h4></div>
-          <h4>Total Price:    {totalPrice}</h4>
-          <h4> Discount:      {discount}</h4>
+          <div
+            style={{
+              border: ".5px solid white ",
+              borderRadius: "5px 5px 1px 1px",
+              backgroundColor: "#ffa500",
+            }}
+          >
+            <h4>Save Extra With Tribe{tribePrice}</h4>
+          </div>
+          <div
+            style={{
+              border: ".5px solid white",
+              borderRadius: "1px 1px 1px 5px",
+              backgroundColor: "#ffffe0",
+            }}
+          >
+            <h4>Price Summary</h4>
+          </div>
+          <h4>Total Price: {totalPrice}</h4>
+          <h4> Discount: {discount}</h4>
           <h4> Delivery Price: {"Free"}</h4>
-          <h4>Payable Amount :{totalPrice-discount}</h4>
+          <h4>Payable Amount :{totalPrice - discount}</h4>
 
-          <Button sx={{color:"black",backgroundColor:"#ffa500",width:"50%",marginLeft:"20px"}} >
+          <Button
+            sx={{
+              color: "black",
+              backgroundColor: "#ffa500",
+              width: "50%",
+              marginLeft: "20px",
+            }}
+          >
             {" "}
-            <Link 
+            <Link
               to="/home/products/cart/payment"
               style={{ textDecoration: "none" }}
             >
@@ -169,7 +243,6 @@ console.log(data)
           </Button>
         </div>
       </div>
-     
     </React.Fragment>
   );
 };

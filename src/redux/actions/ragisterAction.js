@@ -13,7 +13,7 @@ export const Register_Request=(data,navigate)=>(dispatch)=>{
 
    axios.post(`https://ecommrcebackend.herokuapp.com/register`,data).then((res)=>
         {
-           console.log(res.data);
+         //  console.log(res.data);
            alert("Ragister Successfully");
            dispatch(register_succes(res.data))
            navigate("/Home/signIn")

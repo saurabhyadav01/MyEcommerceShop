@@ -5,18 +5,23 @@ import { useSelector,useDispatch } from "react-redux";
 import {  } from "react-redux";
 
 import {fetchProduct, setProducts} from "../redux/actions/productActions"
-
+import { fetchCartProduct } from "../redux/actions/cartItemActions";
 
 const ProductListing=()=>
 {
+    const cartProducts =useSelector((state)=>state.cartProductData.cartProducts);
+ 
 const products =useSelector((state)=>state.allProducts.products);
 const dispatch=useDispatch()
 //console.log(products.allProducts.products)
 
 //console.log(products)
+const  numberOfItem=cartProducts.length
+console.log(cartProducts )
 useEffect(()=>
 {
-   dispatch(fetchProduct())
+   dispatch(fetchProduct());
+   dispatch(fetchCartProduct());
 },[])
 //console.log(products)
 return (
