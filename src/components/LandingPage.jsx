@@ -21,7 +21,7 @@ const LandingPage=()=>
           image="https://www.buylandingpagedesign.com/example/online-store-for-sunglasses-ecommerce-call-to-action-responsive-landing-page-design-001-th.jpg"
           alt="green iguana"
         />
-        <Button  sx={{marginLeft:37,textDecoration:"none"}}><Link to="/Home" style={{textDecoration:"none"}}>Continue..</Link></Button>
+        <Button  sx={{marginLeft:37,textDecoration:"none" }}><Link to="/Home" style={{textDecoration:"none",color:"black"}}>Continue..</Link></Button>
       </CardActionArea>
     </Card>
         </>

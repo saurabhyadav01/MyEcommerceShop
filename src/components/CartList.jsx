@@ -32,6 +32,7 @@ const CartList = () => {
         console.log(response.data);
         Dispatch(fetchCartProduct());
          setData([...cartProducts]);
+       
       })
       .catch((e) => console.log("something went wrong :(", e));
   };
@@ -57,26 +58,26 @@ const CartList = () => {
   let tribePrice = 0;
   let discount = 0;
 
-  const Total = data.map((e) => {
+  const Total = cartProducts.map((e) => {
     totalPrice += e.price * e.quantity;
     tribePrice = +e.tribe;
 
     discount += +e.discount * +e.quantity;
   });
   //console.log(totalPrice-discount)
-  const handleinc = (id) => {
+  const handledec = (id) => {
     const filterData = data.filter((e) => {
-      if (e.id === id ) {
-        e.quantity++;
+      if (e.id === id &&e.quantity>1 ) {
+        e.quantity--;
       }
       return e;
     });
     setData([...filterData]);
   };
-  const handledec = (id) => {
+  const handleinc = (id) => {
     const filterData = cartProducts.filter((e) => {
-      if (e.id === id &&e.quantity>1) {
-        e.quantity--;
+      if (e.id === id ) {
+        e.quantity++;
       }
       return e;
     });
@@ -140,7 +141,7 @@ const CartList = () => {
             <h4>My Bag items {numberOfItem}</h4>
           </div>
           <div className="container">
-            {data.map((e, index) => (
+            {cartProducts.map((e, index) => (
               <div className="flex" key={index}>
                 <div>
                   <h4>{e.id}</h4>
@@ -150,12 +151,13 @@ const CartList = () => {
                   <h4>{e.title}</h4>
                 </div>
                 <div>
-                  <h4> ₹{e.price * e.quantity}</h4>
+                  <h4> ₹{e.price*e.quantity }</h4>
                 </div>
                 <div style={{ padding: "5px" }}>
                   <button
                     style={{ width: "40px" }}
                     onClick={() => {
+                      
                       handleinc(e.id);
                     }}
                   >
