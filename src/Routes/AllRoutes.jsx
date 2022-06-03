@@ -39,7 +39,7 @@ const AllRoutes=()=>
         <Route path="/home/products/cart/ordersummary/:id" element={<OrderSummary/>}></Route>
         <Route path="/home/products/cart/ordersummary/payment" element={<Payment/>}></Route>
         
-        <Route path="/home/products/cart/oderSummary/payment/success" element={<Success/>}></Route>
+        <Route path="home/products/cart/payment/success" element={<Success/>}></Route>
       </Routes> 
         </>
     )
