@@ -34,12 +34,12 @@ const AllRoutes=()=>
         <Route path="Men/products/:id" element={<ProductDetails/>}></Route>
         <Route path="Home/signIn" element={<SignIn/>}></Route>
         <Route path="/Home/SignUp" element={<SignUp/>}></Route>
-        {/* <Route path="home/products/signUp" element={<SignUp/>}></Route> */}
+       
         <Route path="/home/products/cart" element={<CartList/>}></Route>
         <Route path="/home/products/cart/ordersummary/:id" element={<OrderSummary/>}></Route>
         <Route path="/home/products/cart/ordersummary/payment" element={<Payment/>}></Route>
         
-        <Route path="/home/products/cart/oderSummary/payment/success" element={<Success/>}></Route>
+        <Route path="home/products/cart/ordersummary/payment/success" element={<Success/>}></Route>
       </Routes> 
         </>
     )
