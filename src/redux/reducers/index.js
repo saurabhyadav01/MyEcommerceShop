@@ -4,6 +4,7 @@ import { registerReducer } from "./ragisterReducer";
 import { productReducer } from "./productReducer";
 import { selectProductReducer } from "./productReducer";
 import { cartProductReducer } from "./cartItemsReduces";
+import { addressReducer } from "./addressReducer";
 
 
 
@@ -12,7 +13,9 @@ const reducers=combineReducers({
     product:selectProductReducer,
     loginData:loginReducer,
     registerData:registerReducer,
-    cartProductData:cartProductReducer
+    cartProductData:cartProductReducer,
+    addresstData:addressReducer,
+   
 })
 
 export default reducers

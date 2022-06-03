@@ -20,15 +20,3 @@ switch(type)
 
 }
 
-// export const selectProductReducer=(state=initialState,{type,payload})=>
-// {
-// switch(type)
-// {
-//     case ActionTypes.SETECTED_PRODUCTS:
-//         return {...state,...payload};
-
-//     default:
-//         return state    
-// }
-
-// }

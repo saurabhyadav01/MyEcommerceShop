@@ -3,8 +3,14 @@ import Header from "./Header";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setectedProduct } from "../redux/actions/productActions";
-import { fetchCartProduct } from "../redux/actions/cartItemActions";
+import {
+  fetchSelectedProduct,
+  setectedProduct,
+} from "../redux/actions/productActions";
+import {
+  fetchCartProduct,
+  Post_Cart_Product,
+} from "../redux/actions/cartItemActions";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import Footer from "./Footer";
@@ -14,22 +20,11 @@ const ProductDetails = () => {
   const { id } = useParams();
   // console.log(id)
 
-  const fetchProductDetails = async () => {
-    const res = await axios
-      .get(`https://ecommrcebackend.herokuapp.com/products/${id}`)
-      .catch((err) => {
-        //console.log(err)
-      });
-    dispatch(setectedProduct(res.data));
-    dispatch(fetchCartProduct());
-
-    // console.log(res.data)
-  };
   //console.log(product.products)
- 
+
   const addToCart = () => {
     const cartData = {
-    discount:product.discount,
+      discount: product.discount,
       id: product.id,
       image1: product.image1,
       image2: product.image2,
@@ -43,31 +38,36 @@ const ProductDetails = () => {
       title: product.title,
       tribe: product.tribe,
     };
-    axios.post(`https://ecommrcebackend.herokuapp.com/carts`,cartData).then((res)=>
-    {
-       console.log(res.data);
- 
-       
-    }).catch((e)=>
-    {
-  
-      console.log("err"+e)
- 
-    })
-    // console.log(cartData);
-    // const arr = JSON.parse(localStorage.getItem("cartItem")) || [];
-    // arr.push(product);
-    // const cartItems = JSON.parse(localStorage.getItem("cartItem")) || [];
-    // const numberOfItem = cartItems.length;
-    // localStorage.setItem("cartItem", JSON.stringify(arr));
 
-    /// console.log(arr)
+    // axios.post(`https://ecommrcebackend.herokuapp.com/carts`,cartData).then((res)=>
+    // {
+    //    console.log(res.data);
+
+    // }).catch((e)=>
+    // {
+
+    //   console.log("err"+e)
+
+    // })
+    dispatch(Post_Cart_Product(cartData));
   };
+  console.log(product);
+  // const fetchProductDetails = async () => {
+  //   const res = await axios
+  //     .get(`https://ecommrcebackend.herokuapp.com/products/${id}`)
+  //     .catch((err) => {
+  //       //console.log(err)
+  //     });
+  dispatch(fetchSelectedProduct(id));
+  dispatch(fetchCartProduct());
+
+  // console.log(res.data)
+  //};
   // fetchProductDetails()
   console.log(product);
-  useEffect(() => {
-    fetchProductDetails();
-  }, []);
+  // useEffect(() => {
+  //   fetchProductDetails();
+  // }, []);
   return (
     <React.Fragment>
       <Header />

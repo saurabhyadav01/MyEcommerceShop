@@ -13,6 +13,7 @@ import SignUp from "../components/SignUp";
 import Payment from "../components/Payment";
 import Success from "../components/Success";
 import ElectronicsComponent from "../components/ElectronicsComponent"
+import OrderSummary from "../components/OrderSummary";
 const AllRoutes=()=>
 {
     return (
@@ -32,10 +33,13 @@ const AllRoutes=()=>
         <Route path="Electronics/products/:id" element={<ProductDetails/>}></Route>
         <Route path="Men/products/:id" element={<ProductDetails/>}></Route>
         <Route path="Home/signIn" element={<SignIn/>}></Route>
-        <Route path="Home/SignUp" element={<SignUp/>}></Route>
-        <Route path="home/products/cart" element={<CartList/>}></Route>
-        <Route path="/home/products/cart/payment" element={<Payment/>}></Route>
-        <Route path="/home/products/cart/payment/success" element={<Success/>}></Route>
+        <Route path="/Home/SignUp" element={<SignUp/>}></Route>
+        {/* <Route path="home/products/signUp" element={<SignUp/>}></Route> */}
+        <Route path="/home/products/cart" element={<CartList/>}></Route>
+        <Route path="/home/products/cart/ordersummary" element={<OrderSummary/>}></Route>
+        <Route path="/home/products/cart/ordersummary/payment" element={<Payment/>}></Route>
+        
+        <Route path="/home/products/cart/oderSummary/payment/success" element={<Success/>}></Route>
       </Routes> 
         </>
     )

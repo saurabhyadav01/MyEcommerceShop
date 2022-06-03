@@ -16,20 +16,8 @@ export const setectedProduct=(product)=>
         payload:product
     }
 }
-// export const LowToHigh=(product)=>
-// {
-//     return{
-//         type:ActionTypes.SETECTED_PRODUCTS,
-//         payload:product
-//     }
-// }
-// export const highToLow=(product)=>
-// {
-//     return{
-//         type:ActionTypes.SETECTED_PRODUCTS,
-//         payload:product
-//     }
-// }
+
+
 
 export  const sort_price_h_to_l = ()=>({type:ActionTypes.SORT_PRICE_H_TO_L})
 export  const sort_price_l_to_h = ()=>({type:ActionTypes.SORT_PRICE_L_TO_H })
@@ -50,3 +38,14 @@ export  const fetchProduct = ()=>(dispatch)=>{
         console.log(err.message)
     })
 }
+
+export  const fetchSelectedProduct = (id)=>(dispatch)=>{
+
+    axios.get(`https://ecommrcebackend.herokuapp.com/products/${id}`).then((res)=>{
+        // console.log(res.data)
+         dispatch(setectedProduct(res.data))
+    }).catch((err)=>{
+        console.log(err.message)
+    })
+}
+
