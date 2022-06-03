@@ -162,7 +162,7 @@ export default function Payments() {
               sx={{ mt: 3, mb: 2 }}
             >
               Pay
-              {/* <a href="/home/products/cart/payment/success"> Pay</a> */}
+              a href="/home/products/cart/payment/success"> Pay</a> 
             </Button>
           </Box>
         </Box>
