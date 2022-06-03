@@ -21,22 +21,22 @@ export const getAddress=(address)=>
 
 
 //fetch address
-export  const fetch_Adderss = ()=>(dispatch)=>{
+export  const Fetch_Adderss = (id)=>(dispatch)=>{
 
-    axios.get(`https://ecommrcebackend.herokuapp.com/address`)
+    axios.get(`https://ecommrcebackend.herokuapp.com/address/${id}`)
     .then((res) => {
-       console.log(res.data);
-     dispatch(getAddress())
+       //console.log(res.data);
+     dispatch(getAddress(res.data))
     })
     .catch((e) => {
-      alert(" Failed ");
+    
     });
 }
 
 //post cartProduct
 export  const Post_Adderss = (state)=>(dispatch)=>{
 
-    axios.post(`http://localhost:5000/address`,state).then((res)=>{
+    axios.post(`https://ecommrcebackend.herokuapp.com/address`,state).then((res)=>{
         //console.log(res.data)
         
         dispatch(setAddress(res.data));

@@ -12,7 +12,8 @@ switch(type)
 {
     
         case ActionTypes.ADD_ADDRESS:
-            return {...state};
+            return {...state,address:payload};
+
             case ActionTypes.FETCH_ADDRESS:
                 return {...state,address:payload};
 

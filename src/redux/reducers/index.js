@@ -14,7 +14,7 @@ const reducers=combineReducers({
     loginData:loginReducer,
     registerData:registerReducer,
     cartProductData:cartProductReducer,
-    addresstData:addressReducer,
+    addressData:addressReducer,
    
 })
 

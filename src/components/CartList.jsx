@@ -30,7 +30,7 @@ if(loginData)
  )
 }else
 {
-  navigate("Home/SignIn")
+ // navigate("Home/SignIn")
 
 }
 }
@@ -40,6 +40,7 @@ const CartLists = () => {
   const cartProducts = useSelector(
     (state) => state.cartProductData.cartProducts
   );
+  const aData = useSelector((state) => state.addressData.address);
   const Dispatch = useDispatch();
 
   const [data, setData] = useState([]);
@@ -62,7 +63,7 @@ const CartLists = () => {
   }, []);
   data.map((e) => {});
  
-   
+  const id=aData._id
   const numberOfItem = data.length;
   let totalPrice = 0;
   let tribePrice = 0;
@@ -217,7 +218,7 @@ const CartLists = () => {
             }}
           >
             {" "}
-            <Link to={`ordersummary`} style={{ textDecoration: "none" }}>
+            <Link to={`ordersummary/${id}`} style={{ textDecoration: "none" }}>
               CkeakOut
             </Link>
           </Button>
@@ -247,9 +248,9 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+
   boxShadow: 24,
   p: 4,
 };

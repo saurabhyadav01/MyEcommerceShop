@@ -36,7 +36,7 @@ const AllRoutes=()=>
         <Route path="/Home/SignUp" element={<SignUp/>}></Route>
         {/* <Route path="home/products/signUp" element={<SignUp/>}></Route> */}
         <Route path="/home/products/cart" element={<CartList/>}></Route>
-        <Route path="/home/products/cart/ordersummary" element={<OrderSummary/>}></Route>
+        <Route path="/home/products/cart/ordersummary/:id" element={<OrderSummary/>}></Route>
         <Route path="/home/products/cart/ordersummary/payment" element={<Payment/>}></Route>
         
         <Route path="/home/products/cart/oderSummary/payment/success" element={<Success/>}></Route>

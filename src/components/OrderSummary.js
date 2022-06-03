@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 
 import { Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   fetchCartProduct,
   setCartProduct,
 } from "../redux/actions/cartItemActions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetch_Adderss } from "../redux/actions/addressAction";
+
 import SignIn from "./SignIn";
+import { Fetch_Adderss } from "../redux/actions/addressAction";
 
 
 const  OrderSummary=()=>
@@ -37,6 +38,7 @@ if(loginData)
 
 const OrderSummarys = () => {
   const loginData = useSelector((store) => store.loginData);
+  const dileveryAddress = useSelector((store) => store.addressData.address);
   const address= useSelector((state) => state.fetchAddress);
   const cartProducts = useSelector(
     (state) => state.cartProductData.cartProducts
@@ -47,23 +49,26 @@ const OrderSummarys = () => {
   const [user, setUser] = useState({});
   const [incProduct, setIncProduct] = useState(1);
  // fetch address
- 
- const getAddressData = () => {
-  axios
-    .get(`https://ecommrcebackend.herokuapp.com/address`)
-    .then((res) => {
-      // console.log(res.data);
+ const {id}= useParams();
+ console.log(id)
+ console.log(dileveryAddress)
+//  const getAddressData = () => {
+//   axios
+//     .get(`https://localhost:5000/address${id}`)
+//     .then((res) => {
+//        console.log(res.data);
      
-    })
-    .catch((e) => {
-      alert(" Failed ");
-    });
-};
-console.log()
-//getAddressData()
+//     })
+//     .catch((e) => {
+//       alert(" Failed ");
+//     });
+// };
+// console.log()
+
   useEffect(() => {
+    Dispatch(Fetch_Adderss(id))
     Dispatch(fetchCartProduct());
-    Dispatch(fetch_Adderss())
+    
   }, []);
   data.map((e) => {});
   const getUserData = () => {
@@ -78,7 +83,7 @@ console.log()
     }
   };
   const u = getUserData();
-  console.log(u);
+ ;
   const numberOfItem = data.length;
   let totalPrice = 0;
   let tribePrice = 0;
@@ -90,26 +95,7 @@ console.log()
 
     discount += +e.discount * +e.quantity;
   });
-  //console.log(totalPrice-discount)
-  //   const handledec = (id) => {
-  //     const filterData = data.filter((e) => {
-  //       if (e.id === id &&e.quantity>1 ) {
-  //         e.quantity--;
-  //       }
-  //       return e;
-  //     });
-  //     setData([...filterData]);
-  //   };
-  //   const handleinc = (id) => {
-  //     const filterData = cartProducts.filter((e) => {
-  //       if (e.id === id ) {
-  //         e.quantity++;
-  //       }
-  //       return e;
-  //     });
-  //     // Dispatch(fetchCartProduct())
-  //     setData([...filterData]);
-  //   };
+  
 
   const getData = () => {
     setData([...cartProducts]);
@@ -123,30 +109,7 @@ console.log()
 
   return (
     <React.Fragment>
-      {/* <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "50px",
-          margin: "auto",
-          justifyContent: "space-between",
-          backgroundColor: "#febd01",
-        }}
-      >
-        <Link
-          to="/Home"
-          style={{ textDecoration: "none", margin: "10px 0px 0px 50px" }}
-        >
-          Home
-        </Link>
-
-        <Link
-          style={{ textDecoration: "none", margin: "10px 50px 0px 0px" }}
-          to="/Home"
-        >
-          Hii{u}
-        </Link>
-      </div> */}
+    
       <Header />
 
       <div style={{ display: "flex" }}>
@@ -160,10 +123,11 @@ console.log()
           >
             <h5 style={{ textAlign: "center" }}>Delivery Address</h5>
             <div>
+            <h5>Name:{dileveryAddress.firstName} {dileveryAddress.lastNmae}</h5>
               <h5>House No:{"102"}</h5>
-              <h5>chauri chaura,{"District"}:Gorakhpur</h5>
+              <h5>{dileveryAddress.address}</h5>
               <h5>
-                Pin code:{"273203"}, State:{"Utter Pradesh"}
+                Pin code:{dileveryAddress.pin}, State:{dileveryAddress.state}
               </h5>
             </div>
           </div>
@@ -181,39 +145,7 @@ console.log()
                   <h4> ₹{e.price * e.quantity}</h4>
                 </div>
                 <div style={{ padding: "5px" }}>
-                  {/* <button
-                    style={{ width: "40px" }}
-                    onClick={() => {
-                      
-                      handleinc(e.id);
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
-                <div style={{ padding: "5px" }}>
-                  <button style={{ width: "40px", margin: "" }}>
-                    {e.quantity}
-                  </button>
-                </div>
-                <div style={{ padding: "5px" }}>
-                  <button
-                    style={{ width: "40px" }}
-                    onClick={() => {
-                      handledec(e.id);
-                    }}
-                  >
-                    -
-                  </button>
-                </div>
-                <div style={{ padding: "5px" }}>
-                  <button
-                    onClick={() => {
-                      handleDelete(e._id);
-                    }}
-                  >
-                    Delete
-                  </button> */}
+                 
                 </div>
               </div>
             ))}
@@ -263,7 +195,7 @@ console.log()
             }}
           >
             {" "}
-            <Link to="payment" style={{ textDecoration: "none" }}>
+            <Link to="/home/products/cart/ordersummary/payment" style={{ textDecoration: "none" }}>
               Click Here To Pay
             </Link>
           </Button>

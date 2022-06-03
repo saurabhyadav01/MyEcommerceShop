@@ -14,13 +14,14 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const loginData = useSelector((store) => store.loginData);
+  
   const [value, setValue] = useState();
 
   const cartProducts = useSelector(
     (state) => state.cartProductData.cartProducts
   );
   const numberOfItem = cartProducts.length;
-  console.log(numberOfItem);
+
 
   const getUserData = () => {
     if (loginData.loading == true) {
@@ -33,13 +34,13 @@ const Header = () => {
 
   const loginCheck = () => {
     if (loginData.loading == true) {
-      return "/home/products/cart"
+      return `/home/products/cart`
     } else {
       return "/Home/SignIn";
     }
   };
   const path = loginCheck();
-  console.log(path)
+console.log(path)
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 2, color: "red" }}>
