@@ -64,7 +64,11 @@ const OrderSummarys = () => {
 //     });
 // };
 // console.log()
-
+// if(id==undefined)
+// {
+//   alert("Please Add Address");
+//   return
+// }
   useEffect(() => {
     Dispatch(Fetch_Adderss(id))
     Dispatch(fetchCartProduct());

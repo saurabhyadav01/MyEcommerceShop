@@ -61,13 +61,7 @@ const ProductDetails = () => {
   dispatch(fetchSelectedProduct(id));
   dispatch(fetchCartProduct());
 
-  // console.log(res.data)
-  //};
-  // fetchProductDetails()
-  console.log(product);
-  // useEffect(() => {
-  //   fetchProductDetails();
-  // }, []);
+ 
   return (
     <React.Fragment>
       <Header />

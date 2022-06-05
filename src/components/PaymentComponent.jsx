@@ -59,15 +59,16 @@ export default function Payments() {
     //  console.log(carddata[0]);
 
     if (
-      card.name == "saurabh" &&
-      card.cardNo == "14521456985214563" &&
-      card.expiry == "12/23" &&
-      card.cvv == "123"
+      card.name != "" &&
+      card.cardNo != "" &&
+      card.expiry != "" &&
+      card.cvv != ""
     ) {
       let otp;
       const x = prompt("Enter");
+      const l=x.length
       //console.log(x);
-      if (x == 1234) {
+      if (x == l) {
         navigate("/home/products/cart/payment/success");
       } else {
         alert("Invalid Card Details");

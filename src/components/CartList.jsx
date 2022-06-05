@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, getFormControlLabelUtilityClasses, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import {
   fetchCartProduct,
@@ -63,7 +63,8 @@ const CartLists = () => {
   }, []);
   data.map((e) => {});
  
-  const id=aData._id
+  const id= aData._id
+  
   const numberOfItem = data.length;
   let totalPrice = 0;
   let tribePrice = 0;
@@ -103,6 +104,10 @@ const CartLists = () => {
   useEffect(() => {
     getData();
   }, []);
+// if(id==undefined)
+// {
+//   return
+// }
 
   const amountToPay = totalPrice - discount;
 
@@ -209,19 +214,7 @@ const CartLists = () => {
           <h4>Payable Amount :{totalPrice - discount}</h4>
 
         <Box style={{display:"flex"}}>
-        <Button
-            sx={{
-              color: "black",
-              backgroundColor: "#ffa500",
-              width: "50%",
-              marginLeft: "20px",
-            }}
-          >
-            {" "}
-            <Link to={`ordersummary/${id}`} style={{ textDecoration: "none" }}>
-              CkeakOut
-            </Link>
-          </Button>
+       
           {/* <Button
             sx={{
               color: "black",
@@ -236,6 +229,19 @@ const CartLists = () => {
             </Link>
           </Button> */}
           <BasicModal />
+          <Button
+            sx={{
+              color: "black",
+              backgroundColor: "#ffa500",
+              width: "50%",
+              marginLeft: "25%",
+            }}
+          >
+            {" "}
+            <Link to={`ordersummary/${id }`} style={{ textDecoration: "none" }}>
+              CkeakOut
+            </Link>
+          </Button>
         </Box>
         </div>
       </div>
