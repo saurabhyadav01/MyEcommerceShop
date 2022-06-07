@@ -18,7 +18,7 @@ clothing, electronics and many more items. Masai School's Mentorship  was specif
 
 3. One can Sort and Filter the product according to the prices.
 
-4. All the data is stored in the database of the User. 
+4. All the data is stored in the database . 
 
 
 #screenshot![Screenshot (102)](https://user-images.githubusercontent.com/72351102/169230787-50e4deb8-2f4b-4751-bb0b-1750a5df68db.png)
